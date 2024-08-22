@@ -7,7 +7,7 @@ from datetime import datetime, timedelta
 st.title("Simulationsergebnisse Auswertung")
 
 # Online gehostetes Bild (z.B. Branding) im oberen rechten Rand
-image_url = "https://raw.githubusercontent.com/deinbenutzername/deinrepository/main/deinbild.png"  # URL zu deinem Bild
+image_url = "https://github.com/seisenschink/TasAuswertung/blob/main/ipj-svg-130.png"  # URL zu deinem Bild
 st.markdown(
     f"""
     <style>
