@@ -6,6 +6,31 @@ from datetime import datetime, timedelta
 # Titel der App
 st.title("Simulationsergebnisse Auswertung")
 
+# Online gehostetes Bild (z.B. Branding) im oberen rechten Rand
+image_url = "https://raw.githubusercontent.com/deinbenutzername/deinrepository/main/deinbild.png"  # URL zu deinem Bild
+st.markdown(
+    f"""
+    <style>
+    [data-testid="stHeader"] {{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }}
+    [data-testid="stHeader"] > div:first-child {{
+        flex-grow: 1;
+    }}
+    [data-testid="stHeader"] > div:last-child {{
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+    }}
+    </style>
+    <div style="display: flex; justify-content: flex-end;">
+        <img src="{image_url}" width="100" style="position: absolute; top: 10px; right: 10px;">
+    </div>
+    """,
+    unsafe_allow_html=True
+)
 # Seitenleiste für die Auswahl
 st.sidebar.header("Einstellungen")
 
