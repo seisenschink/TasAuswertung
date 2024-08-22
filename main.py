@@ -31,6 +31,9 @@ if uploaded_file is not None:
     parameter_options = ["Lufttemperatur", "Heizlast", "Kühllast"]
     parameter = st.sidebar.selectbox("Wähle den Parameter", parameter_options)
 
+    # Option zur Anzeige der Außentemperatur
+    show_ausstemp = st.sidebar.checkbox("Außentemperatur anzeigen", value=False)
+
     # Zeitraum-Auswahl über Datum
     start_date_input = st.sidebar.date_input("Startdatum", start_date.date())
     end_date_input = st.sidebar.date_input("Enddatum", (start_date + timedelta(days=364)).date())
@@ -43,7 +46,7 @@ if uploaded_file is not None:
     filtered_data = data[(data['Stunde'] >= start_hour) & (data['Stunde'] <= end_hour)]
     columns_to_plot = [col for col in data.columns if any(raum in col for raum in ausgewählte_räume) and parameter in col]
 
-    if len(columns_to_plot) > 0:
+    if len(columns_to_plot) > 0 or show_ausstemp:
         # Daten für die ausgewählten Räume und den Parameter zusammenstellen
         chart_data = pd.DataFrame({
             'Datum': filtered_data['Datum']
@@ -51,6 +54,10 @@ if uploaded_file is not None:
 
         for column in columns_to_plot:
             chart_data[column] = filtered_data[column]
+
+        # Außentemperatur hinzufügen, falls ausgewählt
+        if show_ausstemp:
+            chart_data['Außentemperatur (°C)'] = filtered_data['Außentemperatur (°C)']
 
         # Achsenbeschriftungen je nach Parameter
         y_axis_label = f"{parameter} (°C)" if parameter == "Lufttemperatur" else f"{parameter} (W)"
