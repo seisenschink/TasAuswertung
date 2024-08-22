@@ -4,7 +4,8 @@ import altair as alt
 from datetime import datetime, timedelta
 
 #Bild einfügen
-st.image(https://www.jung-ebs.de/wp-content/themes/ipj/icons/ipj-svg-130.png, width=200)
+image_url = "https://www.jung-ebs.de/wp-content/themes/ipj/icons/ipj-svg-130.png"  # URL zu deinem Bild
+st.image(image_url, width=200)
 
 # Titel der App
 st.title("Simulationsergebnisse Auswertung aus TAS")
